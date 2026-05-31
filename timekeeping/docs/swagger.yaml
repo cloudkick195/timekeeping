@@ -1,0 +1,106 @@
+basePath: /api/v1
+definitions:
+  attendance.CreateInput:
+    properties:
+      employeeId:
+        type: integer
+    type: object
+  attendance.DeployOutput:
+    properties:
+      contractAddress:
+        type: string
+      transactionHash:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: timekeeping
+  title: timekeeping
+  version: "1.0"
+paths:
+  /attendance:
+    get:
+      consumes:
+      - application/json
+      description: Get attendance records based on filter criteria
+      parameters:
+      - description: Employee ID
+        in: query
+        name: employeeId
+        type: string
+      - description: Start date (Unix timestamp)
+        in: query
+        name: startDate
+        type: string
+      - description: End date (Unix timestamp)
+        in: query
+        name: endDate
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success response
+          schema:
+            type: object
+      summary: Get attendance records
+      tags:
+      - Attendance
+    post:
+      consumes:
+      - application/json
+      description: Create a new attendance record
+      parameters:
+      - description: Create attendance input
+        in: body
+        name: attendance
+        required: true
+        schema:
+          $ref: '#/definitions/attendance.CreateInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success response
+          schema:
+            type: object
+      summary: Create attendance record
+      tags:
+      - Attendance
+    put:
+      consumes:
+      - application/json
+      description: Update an existing attendance record
+      parameters:
+      - description: Update attendance input
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/attendance.CreateInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success response
+          schema:
+            type: object
+      summary: Update attendance record
+      tags:
+      - Attendance
+  /attendance/deploy:
+    post:
+      consumes:
+      - application/json
+      description: Deploy the attendance contract
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deploy output
+          schema:
+            $ref: '#/definitions/attendance.DeployOutput'
+      summary: Deploy attendance contract
+      tags:
+      - Attendance
+swagger: "2.0"

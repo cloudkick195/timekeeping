@@ -1,0 +1,18 @@
+docker-compose.yaml
+config.yaml
+
+# Remixd
+contracts/.deps
+contracts/.states
+contracts/artifacts
+contracts/abstracts/artifacts
+contracts/compiler_config.json
+
+# Foundry
+node_modules
+cache/
+out/
+lib/*
+
+# VsCode
+.vscode
